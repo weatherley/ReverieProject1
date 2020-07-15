@@ -11,7 +11,10 @@ public class CharacterControl : MonoBehaviour
 
     public bool isGrounded = true;
 
-    public float height;
+    public float jumpHeight = 2f;
+
+    public bool jumped = false;
+
     private void Awake()
     {
         Anim = GetComponent<Animator>();
@@ -28,6 +31,7 @@ public class CharacterControl : MonoBehaviour
         //Movement();
         Move();
         Jump();
+        Slide();
     }
 
     void Turn()
@@ -59,12 +63,24 @@ public class CharacterControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Anim.SetTrigger("Jump");
+            if (isGrounded)
+            {
+                Anim.SetTrigger("Jump");
+                jumped = true;
+            }
+
         }
-        if (!isGrounded)
+
+        
+    }
+
+    void Slide()
+    {
+        if (Input.GetKeyDown(KeyCode.C) && isGrounded)
         {
-            Debug.Log("jump");
-            Vector3.Lerp(transform.position, new Vector3(transform.position.x, height + 10, transform.position.z), 1);
+            Anim.SetTrigger("Slide");
+
         }
+
     }
 }

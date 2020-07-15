@@ -23,8 +23,11 @@ public class GroundedCheck : MonoBehaviour
             player.isGrounded = false;
 
             //teleport jump
-            player.height = player.transform.position.y + 2;
-            player.transform.position = new Vector3(player.transform.position.x, jumpHeight, player.transform.position.z);
+            if (player.jumped)
+            {
+                player.transform.position = new Vector3(player.transform.position.x, jumpHeight, player.transform.position.z);
+                player.jumped = false;
+            }
         }
     }
 }
