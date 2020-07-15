@@ -9,6 +9,9 @@ public class CharacterControl : MonoBehaviour
     // Start is called before the first frame update
     public Animator Anim;
 
+    public bool isGrounded = true;
+
+    public float height;
     private void Awake()
     {
         Anim = GetComponent<Animator>();
@@ -54,11 +57,14 @@ public class CharacterControl : MonoBehaviour
     }
     void Jump()
     {
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Anim.SetTrigger("Jump");
         }
-
+        if (!isGrounded)
+        {
+            Debug.Log("jump");
+            Vector3.Lerp(transform.position, new Vector3(transform.position.x, height + 10, transform.position.z), 1);
+        }
     }
 }
