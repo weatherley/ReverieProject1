@@ -30,7 +30,7 @@ public class CharacterControl : MonoBehaviour
     void Turn()
     {
         Anim.SetFloat("Turning", Input.GetAxis("Horizontal"));
-        Debug.Log(Input.GetAxis("Horizontal"));
+        //Debug.Log(Input.GetAxis("Horizontal"));
     }
     void Movement()
     {
@@ -54,6 +54,7 @@ public class CharacterControl : MonoBehaviour
     }
     void Jump()
     {
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Anim.SetTrigger("Jump");
